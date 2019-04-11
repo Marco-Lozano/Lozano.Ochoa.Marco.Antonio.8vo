@@ -1,0 +1,25 @@
+# encoding: utf-8
+# Release 19.1
+SetScriptVersion(Version="19.1.103")
+system1 = GetSystem(Name="Geometry")
+geometry1 = system1.GetContainer(ComponentName="Geometry")
+geometry1.Edit(IsSpaceClaimGeometry=True)
+geometry1.Edit(IsSpaceClaimGeometry=True)
+system1.Delete()
+fileType1 = GetFileType(Name="GeometryFileType")
+ImportFile(
+    FilePath="C:/Users/jhon6/Desktop/Universidad/Cinematica de robot/Brazo/brazo 2.0.1/brazo 2.0.1/Ensamblaje1.IGS",
+    FileType=fileType1)
+system2 = GetSystem(Name="SYS")
+geometryComponent1 = system2.GetComponent(Name="Geometry")
+system3 = GetSystem(Name="Geometry")
+geometryComponent2 = system3.GetComponent(Name="Geometry")
+geometryComponent1.ReplaceWithShare(
+    TargetSystem=system2,
+    ComponentToShare=geometryComponent2,
+    SourceSystem=system3)
+modelComponent1 = system2.GetComponent(Name="Model")
+modelComponent1.Refresh()
+model1 = system2.GetContainer(ComponentName="Model")
+model1.Edit()
+Save(Overwrite=True)
